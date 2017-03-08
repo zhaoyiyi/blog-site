@@ -23,25 +23,29 @@ const mutations = {
 };
 
 const actions = {
-  getPosts({ commit, state }) {
+  async getPosts({ commit, state }) {
     // fetch once
     if (state.posts.length > 0) return;
 
-    fetch(`${API}?access_token=${TOKEN}`)
-      .then(res => res.json())
-      .then(res => commit('gotPosts', res));
+    const res = await fetch(`${API}?access_token=${TOKEN}`);
+    commit('gotPosts', await res.json());
   },
-  getPost({ commit, state }, name) {
+  async getPost({ commit, state, dispatch }, name) {
+    // wait to fetch posts data if lands on post page
+    if (!state.post.title) {
+      await dispatch('getPosts');
+    }
+
     const target = state.posts.find(post => post.name === name);
-    fetch(target.download_url)
-      .then(res => res.json)
-      .then(res => commit('gotPost', res));
+    const res = await fetch(target.download_url);
+    commit('gotPost', await res.text());
   },
 };
 
 const getters = {
   postContent(state) {
-    const [, title, date, content] = /(@title:\s?.+[\r\n])(@date:\s?.+[\r\n])(.*)/.exec(state.post) || ['', '', '', '#invalid content'];
+    const [, title, date, content] = /(@title:\s?.+[\r\n])(@date:\s?.+[\r\n])(.*)/.exec(state.post)
+    || ['', '', '', '#invalid content'];
     return { title, date, html: markdown.toHTML(content) };
   },
 };
