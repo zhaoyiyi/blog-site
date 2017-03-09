@@ -1,14 +1,19 @@
 <template>
   <div id="app">
+    <header>
+      <h1>Yi Zhao</h1>
+    </header>
     <nav>
       <router-link to="/posts">Posts</router-link>
       <router-link to="/posts">Projects</router-link>
       <router-link to="/about">About</router-link>
       <span style="flex: 1"></span>
-      <span class="icon-github-circled"></span>
-      <span class="icon-linkedin"></span>
+      <a href="https://github.com/zhaoyiyi" class="icon-github-circled"></a>
+      <a href="#" class="icon-linkedin"></a>
     </nav>
-    <router-view></router-view>
+    <main>
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -25,10 +30,14 @@
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
   }
-
+  header {
+    text-align: center;
+  }
   nav {
     display: flex;
     align-items: center;
+    max-width: 960px;
+    margin: 0 auto 2rem;
   }
 
   nav a {
@@ -40,6 +49,14 @@
   }
   nav a:hover {
     text-decoration: underline;
+  }
+  [class^="icon-"] {
+    font-size: 1.5rem;
+  }
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
   }
 
 </style>
