@@ -14,6 +14,9 @@
   export default {
     name: 'posts',
     computed: mapState(['posts']),
+    created() {
+      this.$store.dispatch('getPosts');
+    },
   };
 </script>
 

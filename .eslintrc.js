@@ -24,6 +24,7 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
+    "no-console": 0,
     "no-param-reassign": 0,
     'no-shadow': 0,
     // don't require .vue extension when importing

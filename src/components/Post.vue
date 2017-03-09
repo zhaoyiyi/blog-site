@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article v-if="post">
     <h1>{{ post.title }}</h1>
     <p>{{ post.date }}</p>
     <div v-html="post.html"></div>
@@ -7,14 +7,12 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapState } from 'vuex';
 
   export default {
     props: ['name'],
-    computed: mapGetters({
-      post: 'postContent',
-    }),
-    created() {
+    computed: mapState(['post']),
+    mounted() {
       this.$store.dispatch('getPost', this.name);
     },
   };
