@@ -12,6 +12,7 @@
   import { mapState } from 'vuex';
 
   export default {
+    name: 'Post',
     props: ['name'],
     computed: mapState(['post']),
     mounted() {

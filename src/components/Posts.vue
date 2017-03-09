@@ -11,7 +11,7 @@
   import { mapGetters } from 'vuex';
 
   export default {
-    name: 'posts',
+    name: 'Posts',
     computed: mapGetters({ posts: 'sortByDate' }),
     methods: {
       navigateToPost(name) {
