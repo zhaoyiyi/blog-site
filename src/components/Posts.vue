@@ -1,10 +1,9 @@
 <template>
   <ul>
-    <li v-for="post in posts" :key="post.url">
-      {{ post.date }} {{ post.title }}
-
-      <router-link :to="'/post/' + post.name">detail</router-link>
-
+    <li v-for="post in posts" :key="post.url" @click="navigateToPost(post.name)">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.date }}</p>
+      <!--<router-link :to="'/post/' + post.name">detail</router-link>-->
     </li>
   </ul>
 </template>
@@ -15,10 +14,33 @@
   export default {
     name: 'posts',
     computed: mapGetters({ posts: 'sortByDate' }),
+    methods: {
+      navigateToPost(name) {
+        console.log(this);
+        this.$router.push({ name: 'Post', params: { name } });
+      },
+    },
     created() {
       this.$store.dispatch('getPosts');
     },
   };
 </script>
 
-<style></style>
+<style scoped>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    border: 2px solid black;
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  li:hover {
+    cursor: pointer;
+  }
+  h2, p {
+    margin: 0;
+  }
+
+</style>

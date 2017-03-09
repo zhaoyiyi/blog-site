@@ -22,7 +22,7 @@ const mutations = {
       return {
         name: post.name,
         title: title.split('-').join(' '),
-        date: moment(date).format('MMM Do, YYYY'),
+        date: moment(date).format('MMM D, YYYY'),
         timestamp: moment(date),
         url: post.download_url,
       };
