@@ -1,7 +1,9 @@
 <template>
   <article v-if="post">
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.date }}</p>
+    <header>
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.date }}</p>
+    </header>
     <div v-html="post.html"></div>
   </article>
 </template>
@@ -18,4 +20,14 @@
   };
 </script>
 
-<style></style>
+<style scoped>
+  header {
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+  header h1, header p {
+    margin-bottom: 0.5rem;
+  }
+</style>

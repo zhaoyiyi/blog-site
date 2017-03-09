@@ -3,7 +3,6 @@
     <li v-for="post in posts" :key="post.url" @click="navigateToPost(post.name)">
       <h2>{{ post.title }}</h2>
       <p>{{ post.date }}</p>
-      <!--<router-link :to="'/post/' + post.name">detail</router-link>-->
     </li>
   </ul>
 </template>
@@ -16,7 +15,6 @@
     computed: mapGetters({ posts: 'sortByDate' }),
     methods: {
       navigateToPost(name) {
-        console.log(this);
         this.$router.push({ name: 'Post', params: { name } });
       },
     },
