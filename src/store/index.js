@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import 'whatwg-fetch';
-import { markdown } from 'markdown';
+import marked from 'marked';
+import moment from 'moment';
 
 Vue.use(Vuex);
 
@@ -16,12 +17,21 @@ const state = {
 
 const mutations = {
   gotPosts(state, posts) {
-    state.posts = posts;
+    state.posts = posts.map((post) => {
+      const [, date, title] = /([\d-]*)-([\w-]*).md/g.exec(post.name);
+      return {
+        name: post.name,
+        title: title.split('-').join(' '),
+        date: moment(date).format('MMM Do, YYYY'),
+        timestamp: moment(date),
+        url: post.download_url,
+      };
+    });
     state.isFetching = false;
   },
   gotPost(state, post) {
     const [, , title, , date, content] = /(@title:\s?)(.+)[\r\n]+(@date:\s?)(.+)[\r\n]+([\s\S]*)/g.exec(post);
-    state.post = { title, date, html: markdown.toHTML(content) };
+    state.post = { title, date: moment(date, 'YYYY-MM-DD').format('MMM Do, YYYY'), html: marked(content) };
     state.isFetching = false;
   },
   fetching(state, isFetching) {
@@ -44,12 +54,15 @@ const actions = {
       await dispatch('getPosts');
     }
     const target = state.posts.find(post => post.name === name);
-    const res = await fetch(target.download_url);
+    const res = await fetch(target.url);
     commit('gotPost', await res.text());
   },
 };
 
-const getters = {};
+const getters = {
+  // newest one first
+  sortByDate: state => state.posts.sort((a, b) => a.timestamp.diff(b.timestamp, 'days') > 0 ? 0 : 1),
+};
 
 export default new Vuex.Store({
   state,

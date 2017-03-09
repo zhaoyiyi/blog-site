@@ -1,7 +1,8 @@
 <template>
   <ul>
     <li v-for="post in posts" :key="post.url">
-      {{ post.name }}
+      {{ post.date }} {{ post.title }}
+
       <router-link :to="'/post/' + post.name">detail</router-link>
 
     </li>
@@ -9,11 +10,11 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'posts',
-    computed: mapState(['posts']),
+    computed: mapGetters({ posts: 'sortByDate' }),
     created() {
       this.$store.dispatch('getPosts');
     },
