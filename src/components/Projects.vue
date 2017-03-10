@@ -22,7 +22,7 @@
       },
       ...mapActions(['getProjects']),
     },
-    mounted() {
+    created() {
       this.getProjects();
     },
   };

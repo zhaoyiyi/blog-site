@@ -16,7 +16,7 @@
     props: ['index'],
     computed: mapState(['project', 'isLoading']),
     methods: mapActions(['getProject']),
-    mounted() {
+    created() {
       this.getProject(this.index);
     },
   };

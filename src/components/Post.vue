@@ -19,7 +19,7 @@
     props: ['name'],
     computed: mapState(['post', 'isLoading']),
     methods: mapActions(['getPost']),
-    mounted() {
+    created() {
       this.getPost(this.name);
     },
   };
