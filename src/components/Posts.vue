@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="list">
     <li v-for="post in posts" :key="post.url" @click="navigateToPost(post.name)">
       <h2>{{ post.title }}</h2>
       <p>{{ post.date }}</p>
@@ -12,7 +12,7 @@
 
   export default {
     name: 'Posts',
-    computed: mapGetters({ posts: 'sortByDate' }),
+    computed: mapGetters(['posts']),
     methods: {
       navigateToPost(name) {
         this.$router.push({ name: 'Post', params: { name } });
@@ -23,22 +23,3 @@
     },
   };
 </script>
-
-<style scoped>
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    border: 2px solid black;
-    margin: 1rem 0;
-    padding: 1rem;
-  }
-  li:hover {
-    cursor: pointer;
-  }
-  h2, p {
-    margin: 0;
-  }
-
-</style>

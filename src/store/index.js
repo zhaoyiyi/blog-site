@@ -6,13 +6,15 @@ import moment from 'moment';
 
 Vue.use(Vuex);
 
-const API = 'https://api.github.com/repos/zhaoyiyi/blog-posts/contents/posts';
+const API = 'https://api.github.com/repos/zhaoyiyi/blog-posts/contents';
 const TOKEN = 'f90564d6559f9b45e00e0e09c1def73fdd63e4f6';
+const PROJECTS = 'https://raw.githubusercontent.com/zhaoyiyi/blog-posts/master/projects.json';
 
 const state = {
   posts: [],
   post: {},
-  isFetching: false,
+  projects: [],
+  project: {},
 };
 
 function parsePost(text) {
@@ -36,7 +38,6 @@ const mutations = {
         url: post.download_url,
       };
     });
-    state.isFetching = false;
   },
   gotPost(state, post) {
     const { content, metadata } = parsePost(post);
@@ -45,36 +46,49 @@ const mutations = {
       date: moment(metadata.date, 'YYYY-MM-DD').format('MMM Do, YYYY'),
       html: marked(content),
     };
-    state.isFetching = false;
   },
-  fetching(state, isFetching) {
-    state.isFetching = isFetching;
+  gotProjects(state, projects) {
+    state.projects = projects;
+  },
+  gotProject(state, project) {
+    state.project = project;
   },
 };
 
 const actions = {
   async getPosts({ commit, state }) {
-    // fetch once
     if (state.posts.length > 0) return;
-    commit('fetching', true);
-    const res = await fetch(`${API}?access_token=${TOKEN}`);
+    const res = await fetch(`${API}/posts?access_token=${TOKEN}`);
     commit('gotPosts', await res.json());
   },
   async getPost({ commit, state, dispatch }, name) {
-    commit('fetching', true);
     // wait to fetch posts data if lands on post page
     if (!state.post.title) {
       await dispatch('getPosts');
     }
-    const target = state.posts.find(post => post.name === name);
+    const target = state.posts.find(item => item.name === name);
     const res = await fetch(target.url);
     commit('gotPost', await res.text());
+  },
+  async getProjects({ commit, state }) {
+    if (state.projects.length > 0) return;
+    const res = await fetch(`${PROJECTS}`);
+    commit('gotProjects', await res.json());
+  },
+  async getProject({ commit, dispatch, state }, index) {
+    if (state.projects.length === 0) {
+      await dispatch('getProjects');
+    }
+    const project = state.projects[index];
+    const res = await fetch(`${project.readme}`);
+    const readme = await res.text();
+    commit('gotProject', { ...project, readme: marked(readme) });
   },
 };
 
 const getters = {
   // newest one first
-  sortByDate: state => state.posts.sort((a, b) => a.timestamp.diff(b.timestamp, 'days') > 0 ? 0 : 1),
+  posts: state => state.posts.sort((a, b) => a.timestamp.diff(b.timestamp, 'days') > 0 ? 0 : 1),
 };
 
 export default new Vuex.Store({

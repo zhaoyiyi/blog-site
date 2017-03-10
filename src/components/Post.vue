@@ -25,9 +25,11 @@
   header {
     margin-bottom: 2rem;
   }
+
   header h1 {
     font-size: 2rem;
   }
+
   header h1, header p {
     margin-bottom: 0.5rem;
   }
