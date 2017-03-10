@@ -6,7 +6,7 @@
     <nav>
       <router-link to="/posts">Posts</router-link>
       <router-link to="/projects">Projects</router-link>
-      <router-link to="/about">About</router-link>
+      <!--<router-link to="/about">About</router-link>-->
       <span style="flex: 1"></span>
       <a href="https://github.com/zhaoyiyi" class="icon-github-circled"></a>
       <a href="#" class="icon-linkedin"></a>
