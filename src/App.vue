@@ -13,7 +13,7 @@
     </nav>
     <main>
       <loading :isLoading="isLoading"></loading>
-      <router-view></router-view>
+      <router-view v-show="!isLoading"></router-view>
     </main>
   </div>
 </template>
