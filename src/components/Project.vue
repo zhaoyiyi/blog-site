@@ -25,6 +25,7 @@
   header {
     border-bottom: 1px solid black;
     padding: 1rem 0;
+    text-align: right;
   }
   header a {
     margin-right: 1rem;

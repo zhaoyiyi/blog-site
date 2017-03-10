@@ -38,6 +38,8 @@
     align-items: center;
     max-width: 960px;
     margin: 0 auto 2rem;
+    font-size: 1.2rem;
+    border-bottom: 1px solid black;
   }
 
   nav a {
@@ -45,13 +47,13 @@
     text-decoration: none;
     text-transform: uppercase;
     display: inline-block;
-    padding: 1rem 0.5rem;
+    margin-right: 1rem;
   }
   nav a:hover {
     text-decoration: underline;
   }
   [class^="icon-"] {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   main {
