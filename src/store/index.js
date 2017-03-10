@@ -7,7 +7,7 @@ import moment from 'moment';
 Vue.use(Vuex);
 
 const API = 'https://api.github.com/repos/zhaoyiyi/blog-posts/contents';
-const TOKEN = 'f90564d6559f9b45e00e0e09c1def73fdd63e4f6';
+const TOKEN = '1b297c0c0445bb2bd80bf779fac7bcd69bafef23';
 const PROJECTS = 'https://raw.githubusercontent.com/zhaoyiyi/blog-posts/master/projects.json';
 
 const state = {
