@@ -1,5 +1,5 @@
 <template>
-  <article v-if="!isLoading">
+  <article>
     <header>
       <a :href="project.github">GitHub</a>
       <a :href="project.link">Project website</a>
@@ -14,7 +14,7 @@
   export default {
     name: 'Project',
     props: ['index'],
-    computed: mapState(['project', 'isLoading']),
+    computed: mapState(['project']),
     methods: mapActions(['getProject']),
     created() {
       this.getProject(this.index);

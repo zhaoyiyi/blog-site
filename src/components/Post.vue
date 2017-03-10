@@ -1,14 +1,11 @@
 <template>
-  <div>
-    <loading :isLoading="isLoading"></loading>
-    <article v-if="!isLoading">
-      <header>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.date }}</p>
-      </header>
-      <div v-html="post.html"></div>
-    </article>
-  </div>
+  <article>
+    <header>
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.date }}</p>
+    </header>
+    <div v-html="post.html"></div>
+  </article>
 </template>
 
 <script>
@@ -17,7 +14,7 @@
   export default {
     name: 'Post',
     props: ['name'],
-    computed: mapState(['post', 'isLoading']),
+    computed: mapState(['post']),
     methods: mapActions(['getPost']),
     created() {
       this.getPost(this.name);

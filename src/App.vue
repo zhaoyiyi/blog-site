@@ -12,14 +12,22 @@
       <a href="#" class="icon-linkedin"></a>
     </nav>
     <main>
+      <loading :isLoading="isLoading"></loading>
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+  import Loading from './components/Loading';
+
   export default {
     name: 'app',
+    components: {
+      loading: Loading,
+    },
+    computed: mapState(['isLoading']),
   };
 </script>
 
