@@ -8,18 +8,22 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapGetters, mapState, mapActions } from 'vuex';
 
   export default {
     name: 'Posts',
-    computed: mapGetters(['posts']),
+    computed: {
+      ...mapGetters(['posts']),
+      ...mapState(['isLoading']),
+    },
     methods: {
       navigateToPost(name) {
         this.$router.push({ name: 'Post', params: { name } });
       },
+      ...mapActions(['getPosts']),
     },
     created() {
-      this.$store.dispatch('getPosts');
+      this.getPosts();
     },
   };
 </script>

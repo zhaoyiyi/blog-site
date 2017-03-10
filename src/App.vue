@@ -68,7 +68,8 @@
     padding-top: 0.2em;
     padding-bottom: 0.2em;
     background-color: rgba(27,31,35,0.05);
-    border-radius: 3px
+    border-radius: 3px;
+    line-height: 200%;
   }
   ul.list {
     list-style: none;

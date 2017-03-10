@@ -15,6 +15,7 @@ const state = {
   post: {},
   projects: [],
   project: {},
+  isLoading: false,
 };
 
 function parsePost(text) {
@@ -38,6 +39,7 @@ const mutations = {
         url: post.download_url,
       };
     });
+    state.isLoading = false;
   },
   gotPost(state, post) {
     const { content, metadata } = parsePost(post);
@@ -46,22 +48,30 @@ const mutations = {
       date: moment(metadata.date, 'YYYY-MM-DD').format('MMM Do, YYYY'),
       html: marked(content),
     };
+    state.isLoading = false;
   },
   gotProjects(state, projects) {
     state.projects = projects;
+    state.isLoading = false;
   },
   gotProject(state, project) {
     state.project = project;
+    state.isLoading = false;
+  },
+  loading(state, isLoading) {
+    state.isLoading = isLoading;
   },
 };
 
 const actions = {
   async getPosts({ commit, state }) {
     if (state.posts.length > 0) return;
+    commit('loading', true);
     const res = await fetch(`${API}/posts?access_token=${TOKEN}`);
     commit('gotPosts', await res.json());
   },
   async getPost({ commit, state, dispatch }, name) {
+    commit('loading', true);
     // wait to fetch posts data if lands on post page
     if (!state.post.title) {
       await dispatch('getPosts');
@@ -72,10 +82,12 @@ const actions = {
   },
   async getProjects({ commit, state }) {
     if (state.projects.length > 0) return;
+    commit('loading', true);
     const res = await fetch(`${PROJECTS}`);
     commit('gotProjects', await res.json());
   },
   async getProject({ commit, dispatch, state }, index) {
+    commit('loading', true);
     if (state.projects.length === 0) {
       await dispatch('getProjects');
     }

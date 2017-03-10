@@ -1,22 +1,23 @@
 <template>
-  <article>
+  <article v-if="!isLoading">
     <header>
       <a :href="project.github">GitHub</a>
       <a :href="project.link">Project website</a>
     </header>
-    <div v-html="project.readme"></div>
+    <div class="readme" v-html="project.readme"></div>
   </article>
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     name: 'Project',
     props: ['index'],
-    computed: mapState(['project']),
+    computed: mapState(['project', 'isLoading']),
+    methods: mapActions(['getProject']),
     mounted() {
-      this.$store.dispatch('getProject', this.index);
+      this.getProject(this.index);
     },
   };
 </script>
@@ -29,5 +30,11 @@
   }
   header a {
     margin-right: 1rem;
+  }
+</style>
+
+<style>
+  .readme img {
+    max-width: 960px;
   }
 </style>

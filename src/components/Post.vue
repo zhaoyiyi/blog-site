@@ -1,22 +1,26 @@
 <template>
-  <article v-if="post">
-    <header>
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.date }}</p>
-    </header>
-    <div v-html="post.html"></div>
-  </article>
+  <div>
+    <loading :isLoading="isLoading"></loading>
+    <article v-if="!isLoading">
+      <header>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.date }}</p>
+      </header>
+      <div v-html="post.html"></div>
+    </article>
+  </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     name: 'Post',
     props: ['name'],
-    computed: mapState(['post']),
+    computed: mapState(['post', 'isLoading']),
+    methods: mapActions(['getPost']),
     mounted() {
-      this.$store.dispatch('getPost', this.name);
+      this.getPost(this.name);
     },
   };
 </script>
