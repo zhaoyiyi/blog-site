@@ -4,8 +4,8 @@
       <h1>Yi Zhao</h1>
     </header>
     <nav>
-      <router-link to="/posts">Posts</router-link>
-      <router-link to="/projects">Projects</router-link>
+      <router-link activeClass="active" to="/posts">Posts</router-link>
+      <router-link activeClass="active" to="/projects">Projects</router-link>
       <!--<router-link to="/about">About</router-link>-->
       <span style="flex: 1"></span>
       <a href="https://github.com/zhaoyiyi" class="icon-github-circled"></a>
@@ -68,7 +68,9 @@
     max-width: 960px;
     margin: 0 auto;
   }
-
+  .active {
+    background-color: rgba(27,31,35,0.25);
+  }
 </style>
 <style>
   code {
@@ -94,4 +96,5 @@
   .list h2, .list p {
     margin: 0.5rem;
   }
+
 </style>
