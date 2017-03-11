@@ -10,6 +10,7 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    { path: '/', redirect: '/posts' },
     { path: '/posts', name: 'Posts', component: Posts },
     { path: '/projects', name: 'Projects', component: Projects },
     { path: '/post/:name', name: 'Post', component: Post, props: true },
