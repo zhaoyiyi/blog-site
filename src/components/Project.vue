@@ -4,7 +4,7 @@
       <a :href="project.github">GitHub</a>
       <a :href="project.link">Project website</a>
     </header>
-    <div class="readme" v-html="project.readme"></div>
+    <div class="content" v-html="project.readme"></div>
   </article>
 </template>
 
@@ -30,11 +30,5 @@
   }
   header a {
     margin-right: 1rem;
-  }
-</style>
-
-<style>
-  .readme img {
-    max-width: 960px;
   }
 </style>
