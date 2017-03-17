@@ -4,7 +4,7 @@
       <h1>{{ post.title }}</h1>
       <p>{{ post.date }}</p>
     </header>
-    <div class="content" v-html="post.html"></div>
+    <div class="markdown-body" v-html="post.html"></div>
   </article>
 </template>
 

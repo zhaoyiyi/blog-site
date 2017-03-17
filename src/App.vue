@@ -96,12 +96,9 @@
   .list h2, .list p {
     margin: 0.5rem;
   }
-  .content {
+  .markdown-body {
     font-size: 1.25rem;
     line-height: 200%;
-  }
-  .content img {
-    max-width: 960px;
   }
 
 </style>

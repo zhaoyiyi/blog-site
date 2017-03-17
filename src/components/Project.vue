@@ -4,7 +4,7 @@
       <a :href="project.github">GitHub</a>
       <a :href="project.link">Project website</a>
     </header>
-    <div class="content" v-html="project.readme"></div>
+    <div class="markdown-body" v-html="project.readme"></div>
   </article>
 </template>
 
