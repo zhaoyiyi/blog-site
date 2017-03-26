@@ -19,6 +19,10 @@
     created() {
       this.getPost(this.name);
     },
+    updated() {
+      Array.from(document.querySelectorAll('pre code'))
+      .map(block => window.hljs.highlightBlock(block));
+    },
   };
 </script>
 
