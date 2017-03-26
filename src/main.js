@@ -5,6 +5,10 @@ import App from './App';
 import router from './router';
 import store from './store';
 
+import './assets/atom-one-dark.css';
+import './assets/fontello-embedded.css';
+import './assets/highlight.pack';
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
