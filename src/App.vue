@@ -97,5 +97,8 @@
     font-size: 1.25rem;
     line-height: 200%;
   }
+  .markdown-body img {
+    max-width: 100%;
+  }
 
 </style>
