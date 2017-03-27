@@ -73,7 +73,15 @@
   }
 </style>
 <style>
-  code {
+  .markdown-body code:not(.hljs) {
+    padding: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+  }
+  
+  .hljs {
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 0.75rem;
     line-height: 150%;
