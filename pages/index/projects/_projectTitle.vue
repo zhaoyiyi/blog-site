@@ -1,6 +1,6 @@
 <script>
 import marked from 'marked';
-import { projects } from './projects';
+import { projects } from '~/assets/projects';
 
 export default {
   name: 'Project',
@@ -29,7 +29,7 @@ export default {
 
 <template>
   <div>
-    <div v-if="readme" v-html="readme" class="content leading-7 pb-20" />
+    <div v-if="readme" v-html="readme" class="content leading-7 pb-20 px-4" />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <script>
-import { projects } from './projects';
+import { projects } from '~/assets/projects';
 
 export default {
   created() {
