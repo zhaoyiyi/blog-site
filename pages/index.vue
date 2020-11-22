@@ -9,14 +9,14 @@ export default {
 </script>
 
 <template>
-  <div class="max-w-5xl mx-auto">
+  <div class="max-w-5xl mx-auto px-4">
     <n-link to="/">
       <h1 class="text-3xl my-4 pl-4 font-display font-bold" :class="{ isHome }">
         Yi Zhao
       </h1>
     </n-link>
     <nav
-      class="border-b border-black flex items-center p-4 mb-8"
+      class="border-b border-black flex items-center p-4 mb-4"
       :class="{ isHome }"
     >
       <n-link to="/projects" class="navItem">
@@ -59,7 +59,7 @@ h1.isHome {
 }
 
 nav.isHome {
-  @apply flex-col h-screen justify-center mx-0;
+  @apply flex-col h-screen justify-center m-0;
 }
 
 nav.isHome > * {

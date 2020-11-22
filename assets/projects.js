@@ -31,7 +31,7 @@ export const projects = [
   {
     title: 'Tv Todo',
     tech: 'Angular, Node.js, Express, MongoDB, RxJS',
-    link: 'http://tv-todo.yizhao.me/',
+    link: null,
     github: 'https://github.com/zhaoyiyi/draw-something',
     readme:
       'https://raw.githubusercontent.com/zhaoyiyi/tv-todo/master/README.md',

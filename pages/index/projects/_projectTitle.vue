@@ -8,20 +8,20 @@ export default {
     return {
       readme: '',
       text: '',
+      project: null,
     };
   },
 
   async fetch() {
     const { projectTitle } = this.$route.params;
-    const project = projects.find(({ title }) => title === projectTitle);
+    this.project = projects.find(({ title }) => title === projectTitle);
 
-    if (project) {
-      const readme = await fetch(project.readme).then((res) => {
+    if (this.project) {
+      const readme = await fetch(this.project.readme).then((res) => {
         return res.text();
       });
 
       this.readme = marked(readme);
-      this.$set(this, 'readme', marked(readme));
     }
   },
 };
@@ -29,7 +29,29 @@ export default {
 
 <template>
   <div>
-    <div v-if="readme" v-html="readme" class="content leading-7 pb-20 px-4" />
+    <header class="text-right">
+      <a
+        v-if="project.github"
+        target="_blank"
+        :href="project.github"
+        class="border-b-2 border-transparent hover:border-black"
+      >
+        GitHub
+      </a>
+      <a
+        v-if="project.link"
+        target="_blank"
+        :href="project.link"
+        class="border-b-2 border-transparent hover:border-black ml-2"
+      >
+        Project website
+      </a>
+    </header>
+    <article
+      v-if="readme"
+      v-html="readme"
+      class="content leading-7 pb-20 px-4"
+    />
   </div>
 </template>
 
