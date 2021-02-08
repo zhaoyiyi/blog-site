@@ -20,7 +20,7 @@
   "homepage": "https://github.com/zhaoyiyi/blog-site#readme",
   "dependencies": {
     "@nuxtjs/tailwindcss": "^3.2.0",
-    "marked": "^1.2.5",
+    "marked": "^2.0.0",
     "nuxt": "^2.14.7"
   }
 }
