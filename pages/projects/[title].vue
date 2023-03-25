@@ -1,30 +1,13 @@
-<script>
-import marked from 'marked';
-import { projects } from '~/assets/projects';
+<script setup>
+import * as marked from 'marked'
+import { projects } from '~/assets/projects'
 
-export default {
-  name: 'Project',
-  data() {
-    return {
-      readme: '',
-      text: '',
-      project: null,
-    };
-  },
+const { title } = useRoute().params
 
-  async fetch() {
-    const { projectTitle } = this.$route.params;
-    this.project = projects.find(({ title }) => title === projectTitle);
-
-    if (this.project) {
-      const readme = await fetch(this.project.readme).then((res) => {
-        return res.text();
-      });
-
-      this.readme = marked(readme);
-    }
-  },
-};
+const project = projects.find((p) => p.title === title)
+const readme = marked.parse(
+  await fetch(project.readme).then((res) => res.text())
+)
 </script>
 
 <template>
@@ -56,28 +39,28 @@ export default {
 </template>
 
 <style scoped>
-.content >>> img {
+.content:deep(img) {
   max-width: 100%;
 }
 
-.content >>> code {
-  @apply bg-gray-300 py-1 px-2;
+.content:deep(code) {
+  @apply bg-gray-200 py-1 px-2;
 }
 
-.content >>> h1,
-.content >>> h2 {
+.content:deep(h1),
+.content:deep(h2) {
   @apply font-bold font-display mb-1 mt-4;
 }
 
-.content >>> h1 {
+.content:deep(h1) {
   @apply text-xl;
 }
 
-.content >>> h2 {
+.content:deep(h2) {
   @apply text-lg;
 }
 
-.content >>> a {
+.content:deep(a) {
   @apply border-b-2 border-black;
 }
 </style>

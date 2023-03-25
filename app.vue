@@ -1,0 +1,70 @@
+<script setup>
+import { computed } from 'vue'
+
+const route = useRoute()
+const isHome = computed(() => route.name === 'index')
+useHead({
+  title: 'Yi Zhao',
+  meta: [
+    { charset: 'utf-8' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+  ],
+})
+</script>
+
+<template>
+  <div class="max-w-5xl mx-auto px-4">
+    <NuxtLink to="/">
+      <h1 class="text-3xl my-4 pl-4 font-display font-bold" :class="{ isHome }">
+        Yi Zhao
+      </h1>
+    </NuxtLink>
+    <nav
+      class="border-b border-black flex items-center p-4 mb-4"
+      :class="{ isHome }"
+    >
+      <NuxtLink to="/projects" class="navItem"> PROJECTS </NuxtLink>
+      <a
+        href="https://github.com/zhaoyiyi"
+        target="_blank"
+        class="w-8 ml-auto mr-4 navItem"
+      >
+        <img src="~/assets/icons/github.svg" alt="github" />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/yi--zhao/"
+        target="_blank"
+        class="w-8 navItem"
+      >
+        <img src="~/assets/icons/linkedin.svg" alt="linkedin" />
+      </a>
+    </nav>
+    <NuxtPage />
+  </div>
+</template>
+
+<style scoped>
+.navItem {
+  @apply text-xl transition-all duration-200 border-b-2 border-transparent p-1 font-bold font-display;
+}
+
+.navItem:hover {
+  @apply border-black;
+}
+
+.router-link-active {
+  @apply bg-gray-200 border-black;
+}
+
+h1.isHome {
+  @apply absolute;
+}
+
+nav.isHome {
+  @apply flex-col h-screen justify-center m-0;
+}
+
+nav.isHome > * {
+  @apply mx-0 my-2;
+}
+</style>
