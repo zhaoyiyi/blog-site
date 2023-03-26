@@ -20,6 +20,7 @@
   "homepage": "https://github.com/zhaoyiyi/blog-site#readme",
   "dependencies": {
     "@nuxtjs/tailwindcss": "6.6.4",
+    "@vercel/analytics": "^0.1.11",
     "marked": "4.3.0",
     "nuxt": "3.3.2"
   }
