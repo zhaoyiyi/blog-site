@@ -23,5 +23,8 @@
     "@vercel/analytics": "^0.1.11",
     "marked": "4.3.0",
     "nuxt": "3.3.2"
+  },
+  "devDependencies": {
+    "@types/marked": "^4.0.8"
   }
 }

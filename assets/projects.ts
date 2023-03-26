@@ -38,4 +38,4 @@ export const projects = [
     summary:
       'A todo list of TV shows and animations. It helps people to keep track of the shows they want to watch every week. ',
   },
-];
+] as const
