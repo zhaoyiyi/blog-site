@@ -2,13 +2,11 @@
 import { marked } from 'marked'
 import { projects } from '~/assets/projects'
 
-defineProps<{
+const props = defineProps<{
   title: string
 }>()
 
-const { title } = useRoute().params
-
-const project = projects.find((p) => p.title === title)
+const project = projects.find((p) => p.title === props.title)
 
 const readme =
   project && marked.parse(await fetch(project.readme).then((res) => res.text()))
