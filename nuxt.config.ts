@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   css: ['~/assets/css/main.css'],
+  experimental: {
+    componentIslands: true,
+  },
   app: {
     head: {
       title: 'Yi Zhao',
@@ -12,5 +15,8 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
     },
+  },
+  routeRules: {
+    '*': { swr: true },
   },
 })
