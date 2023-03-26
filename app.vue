@@ -3,13 +3,6 @@ import { computed } from 'vue'
 
 const route = useRoute()
 const isHome = computed(() => route.name === 'index')
-useHead({
-  title: 'Yi Zhao',
-  meta: [
-    { charset: 'utf-8' },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  ],
-})
 </script>
 
 <template>
