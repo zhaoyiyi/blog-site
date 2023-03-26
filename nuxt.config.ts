@@ -4,9 +4,6 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   plugins: [{ src: '~/plugins/vercel.ts', mode: 'client' }],
   css: ['~/assets/css/main.css'],
-  experimental: {
-    componentIslands: true,
-  },
   app: {
     head: {
       title: 'Yi Zhao',
