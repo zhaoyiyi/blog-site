@@ -17,6 +17,6 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '*': { swr: true },
+    '*': { static: true },
   },
 })
