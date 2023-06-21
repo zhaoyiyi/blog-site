@@ -22,7 +22,7 @@
     "@nuxtjs/tailwindcss": "6.6.4",
     "@vercel/analytics": "^0.1.11",
     "marked": "4.3.0",
-    "nuxt": "3.3.2"
+    "nuxt": "3.4.3"
   },
   "devDependencies": {
     "@types/marked": "^4.0.8"
